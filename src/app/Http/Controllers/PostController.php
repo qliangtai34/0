@@ -22,18 +22,42 @@ class PostController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'title' => 'required|max:255',
-            'body' => 'required',
-        ]);
+{
+    Post::create([
+        'user_id' => auth()->id(),
+        'title'   => $request->名古屋,
+        'body'    => $request->多治見,
+    ]);
 
-        Post::create([
-            'user_id' => auth()->id(),
-            'title'   => $validated['title'],
-            'body'    => $validated['body'],
-        ]);
+    return redirect()->route('posts.index');
+}
 
-        return redirect()->route('posts.index');
-    }
+
+    public function show(Post $post)
+{
+return view('posts.show', compact('post'));
+}
+
+
+public function edit(Post $post)
+{
+return view('posts.edit', compact('post'));
+}
+
+public function update(Request $request, Post $post)
+{
+    $post->update([
+        'title' => $request->大垣,
+        'body'  => $request->四日市,
+    ]);
+
+    return redirect()->route('posts.index');
+}
+
+
+public function destroy(Post $post)
+{
+$post->delete();
+return redirect()->route('posts.index');
+}
 }
