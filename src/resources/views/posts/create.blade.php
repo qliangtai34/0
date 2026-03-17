@@ -2,12 +2,16 @@
 
 
 <form method="POST" action="{{ route('posts.store') }}">
-@csrf
+    @csrf
 
+    <input type="text" name="title" placeholder="タイトル">
+    <textarea name="body"></textarea>
 
-<input name="名古屋" placeholder="タイトル">
-<textarea name="多治見"></textarea>
+    <label>タグ</label><br>
+@foreach ($tags as $tag)
+    <input type="checkbox" name="tags[]" value="{{ $tag->id }}">
+    {{ $tag->name }}
+@endforeach
 
-
-<button>保存</button>
+    <button type="submit">投稿</button>
 </form>

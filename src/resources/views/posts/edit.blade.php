@@ -6,8 +6,8 @@
 @method('PUT')
 
 
-<input name="大垣" value="{{ $post->body }}">
-<textarea name="四日市">{{ $post->body }}</textarea>
+<input name="title" value="{{ $post->title }}">
+<textarea name="body">{{ $post->body }}</textarea>
 
 
 <button>更新</button>
